@@ -16,9 +16,9 @@ def doubler(fn):
     def inner_f(*args, **kwargs):
         print(f'The numerical arguments {fn.__name__} function are being doubled.')
         
-        args_new = []
         
         ''' Loop through and double int and float values '''
+        args_new = []
         for i in range(len(args)):
             if isinstance(args[i], int) or isinstance(args[i], float):
                 args_new.append(2 * args[i])
@@ -26,7 +26,7 @@ def doubler(fn):
                 args_new.append(args[i])
             #args_new = tuple(args_new)  # args can be a list ratehr than a tuple
             
-        for k,v in kwargs:
+        for k,v in kwargs.items():
             if isinstance(kwargs[k], int) or isinstance(kwargs[k], float):
                 kwargs[k] = 2 * kwargs[k]
         
@@ -39,7 +39,7 @@ def mult2(x):
     return(2*x)
 
 @doubler
-def dict2(x):
+def dict2(**x):
     return(x)
     
 
@@ -47,7 +47,7 @@ print(mult2(2))
 print(mult2.__name__, '\n')
 
 my_dict = {'k':3, 'm':'x', 'n':4.5}
-result = dict2(my_dict)
+result = dict2(**my_dict)
 for k,v in result.items():
     print(k,v)
 print(dict2.__name__)
