@@ -6,9 +6,11 @@ Created on Wed Sep 29 21:10:55 2021
 """
 
 import time
+from functools import wraps
 
 ''' This wrapper function creates a timer for function execution '''
 def time_fn(fn):
+    @wraps(fn)
     def inner_f(*args, **kwargs):
         start = time.time()
         result = fn(*args, **kwargs)
@@ -24,3 +26,4 @@ def loop(n):
     return result
 
 print(loop(50000))
+print(loop.__name__)
