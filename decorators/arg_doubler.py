@@ -18,19 +18,16 @@ def doubler(fn):
         
         
         ''' Loop through and double int and float values '''
-        args_new = []
+        args = list(args) # args come in an (immutable) tuple
         for i in range(len(args)):
             if isinstance(args[i], int) or isinstance(args[i], float):
-                args_new.append(2 * args[i])
-            else:
-                args_new.append(args[i])
-            #args_new = tuple(args_new)  # args can be a list ratehr than a tuple
+                args[i] = 2 * args[i]
             
         for k,v in kwargs.items():
             if isinstance(kwargs[k], int) or isinstance(kwargs[k], float):
                 kwargs[k] = 2 * kwargs[k]
         
-        return fn(*args_new, **kwargs)
+        return fn(*args, **kwargs)
     
     return inner_f
 
